@@ -1,0 +1,14 @@
+var validateStackSequences = function(pushed, popped) {
+     let stack = []
+    let i=0
+    for(let x of pushed){
+        stack.push(x)
+        while(stack.length>0 && stack[stack.length-1]==popped[i]){
+            stack.pop()
+            i++
+        }
+    }
+    return i==pushed.length
+    
+};
+
