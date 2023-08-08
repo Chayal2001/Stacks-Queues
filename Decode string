@@ -1,0 +1,23 @@
+var decodeString = function(s) {
+      let stack = []
+    let num =0;
+    let str = ''
+    for(let x of s){
+        if(x=='['){
+            stack.push(str)
+            stack.push(num)
+            str=''
+            num=0
+        }else if(x==']'){
+            let newnum = stack.pop()
+            let prevstr = stack.pop()
+            str = prevstr+ str.repeat([newnum])
+        }else if(x>=0 &&x<=9){
+            num= num*10+parseInt(x)
+        }else{
+            str+=x
+        }
+    }
+    return str
+    
+};
