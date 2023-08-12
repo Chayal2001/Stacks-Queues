@@ -1,0 +1,21 @@
+
+var StockSpanner = function() {
+    
+    this.prices = []
+    this.span = []
+    
+};
+
+StockSpanner.prototype.next = function(price) {
+    let span = 1
+    while(this.prices.length && this.prices[this.prices.length-1]<=price){
+        span+=this.span.pop();
+        this.prices.pop()
+    }
+    this.prices.push(price)
+    this.span.push(span)
+    return span
+    
+};
+
+
