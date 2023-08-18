@@ -1,0 +1,162 @@
+var MyCircularQueue = function(k) {
+      this.front = -1;
+    this.rear = -1;
+    this.queue = new Array(k);
+    this.size = k;
+};
+
+/** 
+ * @param {number} value
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.enQueue = function(value) {
+     if (this.isFull()) {
+        return false;
+    }
+    if (this.isEmpty()) {
+        this.front = 0;
+    }
+    this.rear = (this.rear + 1) % this.size;
+    this.queue[this.rear] = value;
+    return true;
+    
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.deQueue = function() {
+      if (this.isEmpty()) {
+        return false;
+    }
+    if (this.front === this.rear) {
+        this.front = -1;
+        this.rear = -1;
+        return true;
+    }
+    this.front = (this.front + 1) % this.size;
+    return true;
+    
+};
+
+/**
+ * @return {number}
+ */
+MyCircularQueue.prototype.Front = function() {
+     if (this.isEmpty()) {
+        return -1;
+    }
+    return this.queue[this.front];
+    
+};
+
+/**
+ * @return {number}
+ */
+MyCircularQueue.prototype.Rear = function() {
+        if (this.isEmpty()) {
+        return -1;
+    }
+    return this.queue[this.rear];
+    
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.isEmpty = function() {
+     return this.front === -1;
+};
+
+/**
+ * @return {boolean}
+ */
+MyCircularQueue.prototype.isFull = function() {
+     return ((this.rear + 1) % this.size) === this.front;
+    
+};
+
+/** 
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * var obj = new MyCircularQueue(k)
+ * var param_1 = obj.enQueue(value)
+ * var param_2 = obj.deQueue()
+ * var param_3 = obj.Front()
+ * var param_4 = obj.Rear()
+ * var param_5 = obj.isEmpty()
+ * var param_6 = obj.isFull()
+ */
+ 
+//========== User's Code Ends Here ==========
+
+
+async function readInput() {
+        let inputString = '';
+        var output=[];
+        process.stdin.on('data', inputStdin => {
+            inputString += inputStdin;
+            const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
+            var count =0;
+            
+            
+            
+            var stack =new MyCircularQueue(parseInt(inputArr[count]));
+            count =count+1;
+            while(true)
+            {
+                var operation=inputArr[count];
+                count=count+1;
+                //cin>>operation;
+                if(operation == "stop")
+                {
+                    break;
+                }
+                else if(operation == "enque")
+                {
+                    var ele=parseInt(inputArr[count]);
+                    //cin>>ele;
+                    var output = stack.enQueue(ele);
+                    console.log(output);
+                }
+                else if (operation == "deque")
+                {
+                    var ele = stack.deQueue();
+                    console.log(ele);
+                }
+                else if (operation ==  "front")
+                {
+                    var x=stack.Front();
+                    console.log(x);
+                }
+                else if(operation == "rear")
+                {
+                    var x=stack.Rear();
+                    console.log(x);
+                }
+                else if (operation == "isempty")
+                {
+                    var ele = stack.isEmpty();
+                    console.log(ele);
+                }
+                else if (operation == "isfull")
+                {
+                    var ele = stack.isFull();
+                    console.log(ele);
+                }
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            process.exit();
+            
+        })
+        
+
+}
+readInput();
