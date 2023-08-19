@@ -1,0 +1,45 @@
+var nextGreaterElements = function(nums) {
+     let n= nums.length
+    let ans = new Array(n).fill(-1);
+
+    for(let i=0; i<n ;i++ ){
+        for(let j=i+1; j<i+n; j++){
+            if(nums[j%n]>nums[i]){
+                ans[i]= nums[j%n]
+                break;
+            }
+        }
+    }
+    return ans;
+    
+};
+
+//========== User's Code Ends Here ==========
+
+
+//Dont change anything below. If changed click on reset.
+async function readInput() {
+        let inputString = '';
+        var output=[];
+        process.stdin.on('data', inputStdin => {
+            inputString += inputStdin;
+            const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
+            var nums=[];
+            for(var i=0;i<parseInt(inputArr[0]);i++)
+            {
+                nums.push(parseInt(inputArr[i+1]))
+            }
+            output = nextGreaterElements(nums)
+            var str="";
+            for(var i=0;i<output.length;i++)
+            {
+                str=str+output[i]+" ";
+            }  
+            console.log(str);
+            process.exit();
+            
+        })
+        
+
+}
+readInput();
