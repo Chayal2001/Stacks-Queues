@@ -1,0 +1,45 @@
+class Queue {
+
+ constructor() {
+
+  this.items = [];
+
+ }
+
+ enqueue(x) {
+
+  this.items.push(x);
+
+ }
+
+ dequeue() {
+
+  if (this.is_empty()) {
+
+   return "Underflow";
+
+  }
+
+  return this.items.shift();
+
+ }
+
+is_empty() {
+
+  return this.items.length === 0;
+
+ }
+
+ get_first_element() {
+
+  if (this.is_empty()) {
+
+   return "Queue is empty";
+
+  }
+
+  return this.items[0];
+
+ }
+
+}
